@@ -1,5 +1,6 @@
 ﻿using DesafiosTarget.desafio_01;
 using DesafiosTarget.desafio_02;
+using DesafiosTarget.desafio_03;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
@@ -25,7 +26,8 @@ while (executando)
             break;
         case "3":
             Console.Clear();
-            Console.WriteLine("Desafio 3 - Em desenvolvimento...");
+            var desafioTres = new DesafioTres();
+            desafioTres.Executar();
             AguardarContinuacao();
             break;
         case "0":
@@ -50,7 +52,7 @@ void ExibirMenu()
     Console.WriteLine("║                                                            ║");
     Console.WriteLine("║   [1] Desafio 1 - Calculadora de Comissões                 ║");
     Console.WriteLine("║   [2] Desafio 2 - Controle de Estoque                      ║");
-    Console.WriteLine("║   [3] Desafio 3 - Em desenvolvimento                       ║");
+    Console.WriteLine("║   [3] Desafio 3 - Calculadora de Juros                      ║");
     Console.WriteLine("║                                                            ║");
     Console.WriteLine("║   [0] Sair                                                 ║");
     Console.WriteLine("║                                                            ║");
