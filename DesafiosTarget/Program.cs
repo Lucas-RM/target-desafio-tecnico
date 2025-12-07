@@ -4,40 +4,45 @@ using DesafiosTarget.desafio_03;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-bool executando = true;
+await ExecutarMenuPrincipalAsync();
 
-while (executando)
+async Task ExecutarMenuPrincipalAsync()
 {
-    ExibirMenu();
-    var opcao = Console.ReadLine();
+    bool executando = true;
 
-    switch (opcao)
+    while (executando)
     {
-        case "1":
-            Console.Clear();
-            var desafioUm = new DesafioUm();
-            desafioUm.Executar();
-            AguardarContinuacao();
-            break;
-        case "2":
-            Console.Clear();
-            var desafioDois = new DesafioDois();
-            desafioDois.Executar();
-            break;
-        case "3":
-            Console.Clear();
-            var desafioTres = new DesafioTres();
-            desafioTres.Executar();
-            AguardarContinuacao();
-            break;
-        case "0":
-            executando = false;
-            Console.WriteLine("\nObrigado por usar o sistema! Até mais.");
-            break;
-        default:
-            Console.WriteLine("\nOpção inválida. Tente novamente.");
-            Thread.Sleep(1500);
-            break;
+        ExibirMenu();
+        var opcao = Console.ReadLine();
+
+        switch (opcao)
+        {
+            case "1":
+                Console.Clear();
+                var desafioUm = new DesafioUm();
+                await desafioUm.ExecutarAsync();
+                AguardarContinuacao();
+                break;
+            case "2":
+                Console.Clear();
+                var desafioDois = new DesafioDois();
+                await desafioDois.ExecutarAsync();
+                break;
+            case "3":
+                Console.Clear();
+                var desafioTres = new DesafioTres();
+                desafioTres.Executar();
+                AguardarContinuacao();
+                break;
+            case "0":
+                executando = false;
+                Console.WriteLine("\nObrigado por usar o sistema! Até mais.");
+                break;
+            default:
+                Console.WriteLine("\nOpção inválida. Tente novamente.");
+                Thread.Sleep(1500);
+                break;
+        }
     }
 }
 
@@ -52,7 +57,7 @@ void ExibirMenu()
     Console.WriteLine("║                                                            ║");
     Console.WriteLine("║   [1] Desafio 1 - Calculadora de Comissões                 ║");
     Console.WriteLine("║   [2] Desafio 2 - Controle de Estoque                      ║");
-    Console.WriteLine("║   [3] Desafio 3 - Calculadora de Juros                      ║");
+    Console.WriteLine("║   [3] Desafio 3 - Calculadora de Juros                     ║");
     Console.WriteLine("║                                                            ║");
     Console.WriteLine("║   [0] Sair                                                 ║");
     Console.WriteLine("║                                                            ║");
