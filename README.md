@@ -6,6 +6,8 @@ Desafio técnico desenvolvido para o processo seletivo de **Desenvolvedor(a) de 
 
 Este repositório contém a resolução de 3 desafios de programação propostos pela Target Sistemas, implementados em C# com .NET 6.0. Cada desafio aborda um cenário diferente do dia a dia de um desenvolvedor.
 
+O projeto foi desenvolvido seguindo os princípios de **Clean Architecture** e **Clean Code**, garantindo código organizado, testável e manutenível.
+
 ---
 
 ## 🧩 Desafios
@@ -52,6 +54,8 @@ Sistema que calcula o valor de juros a ser pago em caso de atraso no pagamento.
 
 - **Linguagem:** C#
 - **Framework:** .NET 6.0
+- **Arquitetura:** Clean Architecture
+- **Padrões:** SOLID, Repository Pattern, Service Pattern
 - **IDE:** Visual Studio / Visual Studio Code
 - **Serialização:** System.Text.Json
 - **Versionamento:** Git & GitHub
@@ -92,20 +96,55 @@ dotnet run
 
 ## 📁 Estrutura do Projeto
 
+O projeto segue a arquitetura em camadas (Clean Architecture), onde cada desafio possui sua própria estrutura organizada:
+
 ```
 DesafiosTarget/
 ├── desafio-01/
-│   ├── DesafioUm.cs
-│   ├── registros-vendas.json
-│   └── Models/
+│   ├── Domain/
+│   │   ├── Entities/          # Entidades de negócio (Venda, ComissaoVendedor, DadosVendas)
+│   │   └── ValueObjects/      # Objetos de valor (RegraComissao)
+│   ├── Application/
+│   │   ├── Interfaces/        # Contratos para inversão de dependência
+│   │   └── Services/          # Serviços de aplicação (ComissaoService)
+│   ├── Infrastructure/
+│   │   └── Repositories/      # Implementação de acesso a dados (VendaRepository)
+│   ├── Presentation/
+│   │   └── Console/           # Interface do usuário (ComissaoConsoleView)
+│   ├── DesafioUm.cs           # Ponto de entrada do desafio
+│   └── registros-vendas.json
 ├── desafio-02/
+│   ├── Domain/
+│   │   └── Entities/          # Entidades (Produto, Movimentacao, DadosEstoque)
+│   ├── Application/
+│   │   ├── Interfaces/
+│   │   └── Services/          # EstoqueService
+│   ├── Infrastructure/
+│   │   └── Repositories/      # ProdutoRepository, MovimentacaoRepository
+│   ├── Presentation/
+│   │   └── Console/           # EstoqueConsoleController, EstoqueConsoleView
 │   ├── DesafioDois.cs
-│   ├── estoque-dos-produtos.json
-│   └── Models/
+│   └── estoque-dos-produtos.json
 ├── desafio-03/
+│   ├── Domain/
+│   │   └── ValueObjects/      # CalculoJuros
+│   ├── Application/
+│   │   ├── Interfaces/
+│   │   └── Services/          # JurosService
+│   ├── Presentation/
+│   │   └── Console/           # JurosConsoleController, JurosConsoleView
 │   └── DesafioTres.cs
-└── Program.cs
+└── Program.cs                  # Menu principal da aplicação
 ```
+
+### 🏗️ Arquitetura
+
+Cada desafio segue a estrutura de **Clean Architecture** com as seguintes camadas:
+
+- **Domain**: Contém as entidades e regras de negócio puras, sem dependências externas
+- **Application**: Contém a lógica de aplicação, serviços e interfaces (contratos)
+- **Infrastructure**: Implementa os detalhes técnicos (acesso a dados, arquivos, etc.)
+- **Presentation**: Responsável pela interface com o usuário (Console)
 
 ---
 
